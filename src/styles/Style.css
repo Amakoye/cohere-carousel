@@ -12,11 +12,17 @@
   margin: 0 auto;
 }
 
+h4 {
+  text-align: center;
+  margin-top: 20px;
+}
+
 .carousel {
   height: 100%;
   position: relative;
   margin-top: 1em;
   border: 1px solid bisque;
+  border-radius: 1em;
 }
 
 .carousel__image {
@@ -52,12 +58,12 @@
 
 .carousel__btn--icon {
   font-size: 5em;
-  color: aliceblue;
+  color: bisque;
   transition: all 400ms ease-in;
 }
 
 .carousel__btn--icon:hover {
-  color: bisque;
+  color: aliceblue;
 }
 
 .carousel__indicators {
@@ -73,12 +79,12 @@
   height: 15px;
   width: 15px;
   border-radius: 50%;
-  border: 0.85px solid green;
+  border: 1px solid bisque;
   background: transparent;
 }
 
 .current__slide {
-  background: green;
+  background: bisque;
 }
 
 @media screen and (max-width: 600px) {

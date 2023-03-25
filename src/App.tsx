@@ -40,6 +40,10 @@ function App() {
     );
   };
 
+  if (loading) {
+    return <h4>Loading please wait...</h4>;
+  }
+
   return (
     <div className="app">
       <h4>{`slide count: ${currentSlideIndex + 1}`}</h4>
