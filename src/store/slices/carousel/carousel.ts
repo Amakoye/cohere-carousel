@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllImages } from "../../thunks/carousel/carousel";
+import { getImagesRework } from "../../thunks/carousel/carousel";
 
 const initialState: CarouselState = {
   loading: false,
@@ -11,10 +11,10 @@ const carouselSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getAllImages.pending, (state) => {
+    builder.addCase(getImagesRework.pending, (state) => {
       state.loading = true;
     });
-    builder.addCase(getAllImages.fulfilled, (state, action) => {
+    builder.addCase(getImagesRework.fulfilled, (state, action) => {
       state.loading = false;
       state.images = action.payload;
     });

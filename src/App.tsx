@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai";
 
 import { useDispatch, useSelector } from "./store";
-import { getAllImages } from "./store/thunks/carousel/carousel";
+import { getImagesRework } from "./store/thunks/carousel/carousel";
 /* const images = [slide1, slid2, slide3]; */
 function App() {
   /* const [slides, setSlides] = useState<any[]>([]); */
@@ -11,32 +11,32 @@ function App() {
 
   const { loading, images } = useSelector((store) => store.carousel);
 
-  console.log(images.length);
+  console.log(images?.length);
 
   useEffect(() => {
-    dispatch(getAllImages());
+    dispatch(getImagesRework());
   }, [dispatch]);
 
   //
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentSlideIndex((prevSlide) =>
-        prevSlide === images.length - 1 ? 0 : prevSlide + 1
+        prevSlide === images?.length - 1 ? 0 : prevSlide + 1
       );
     }, 3000);
 
     return () => clearInterval(intervalId);
-  }, [images.length]);
+  }, [images?.length]);
 
   const handlePrevSlideClick = () => {
     setCurrentSlideIndex((prevSlideIndex) =>
-      prevSlideIndex === 0 ? images.length - 1 : prevSlideIndex - 1
+      prevSlideIndex === 0 ? images?.length - 1 : prevSlideIndex - 1
     );
   };
 
   const handleNextSlideClick = () => {
     setCurrentSlideIndex((prevSlideIndex) =>
-      prevSlideIndex === images.length - 1 ? 0 : prevSlideIndex + 1
+      prevSlideIndex === images?.length - 1 ? 0 : prevSlideIndex + 1
     );
   };
 
@@ -50,11 +50,13 @@ function App() {
       <div className="carousel">
         <div className="carousel__track">
           <div className="carousel__slide">
-            <img
-              className="carousel__image"
-              src={images[currentSlideIndex]}
-              alt={`slide number ${currentSlideIndex + 1}`}
-            />
+            {images?.length && (
+              <img
+                className="carousel__image"
+                src={images[currentSlideIndex]}
+                alt={`slide number ${currentSlideIndex + 1}`}
+              />
+            )}
           </div>
         </div>
         <button
@@ -70,7 +72,7 @@ function App() {
           <AiOutlineCaretRight className="carousel__btn--icon" />
         </button>
         <div className="carousel__indicators">
-          {images.map((image, i) => (
+          {images?.map((image, i) => (
             <button
               key={i}
               className={
