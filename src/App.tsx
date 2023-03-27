@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AiOutlineCaretLeft, AiOutlineCaretRight } from "react-icons/ai";
+import ImageCarousel from "./components/ImageCarousel";
 
 import { useDispatch, useSelector } from "./store";
 import { getImagesRework } from "./store/thunks/carousel/carousel";
@@ -47,43 +47,14 @@ function App() {
   return (
     <div className="app">
       <h4>{`slide count: ${currentSlideIndex + 1}`}</h4>
-      <div className="carousel">
-        <div className="carousel__track">
-          <div className="carousel__slide">
-            {images?.length && (
-              <img
-                className="carousel__image"
-                src={images[currentSlideIndex]}
-                alt={`slide number ${currentSlideIndex + 1}`}
-              />
-            )}
-          </div>
-        </div>
-        <button
-          className="carousel__btn carousel__btn--left"
-          onClick={handlePrevSlideClick}
-        >
-          <AiOutlineCaretLeft className="carousel__btn--icon" />
-        </button>
-        <button
-          className="carousel__btn carousel__btn--right"
-          onClick={handleNextSlideClick}
-        >
-          <AiOutlineCaretRight className="carousel__btn--icon" />
-        </button>
-        <div className="carousel__indicators">
-          {images?.map((image, i) => (
-            <button
-              key={i}
-              className={
-                currentSlideIndex === i
-                  ? "carousel__indicator current__slide"
-                  : "carousel__indicator"
-              }
-            ></button>
-          ))}
-        </div>
-      </div>
+      {images.length && (
+        <ImageCarousel
+          images={images}
+          currentSlideIndex={currentSlideIndex}
+          handleNextSlideClick={handleNextSlideClick}
+          handlePrevSlideClick={handlePrevSlideClick}
+        />
+      )}
     </div>
   );
 }

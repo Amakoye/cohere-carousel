@@ -23,7 +23,7 @@ const carouselSlice = createSlice({
 
 type CarouselState = {
   loading: boolean;
-  images: any[];
+  images: string[];
 };
 
 export default carouselSlice.reducer;
